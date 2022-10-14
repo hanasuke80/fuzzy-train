@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="Viewport" content="width=device-width, initial-scale1.0"> 
+	<title>電卓</title>
+    <style>
+        #container{
+            display: inline-block;
+        }
+        #result{
+            height: 30px;
+            border: solid 1px rgb(88, 88, 88);
+            background-color: #e4e4e4;
+        }
+        table{
+            table-layout: fixed;
+        }
+        td{
+            width: 24px;
+            height: 24px;
+        }
+        button{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="result"></div>
+        <table>
+            <tbody>
+                <tr>
+                    <td><button>+</button></td>
+                    <td><button>-</button></td>
+                    <td><button>*</button></td>
+                    <td><button>/</button></td>
+                </tr>
+                <tr>
+                    <td><button>7</button></td>
+                    <td><button>8</button></td>
+                    <td><button>9</button></td>
+                    <td><button>C</button></td>
+                </tr>
+                <tr>
+                    <td><button>4</button></td>
+                    <td><button>5</button></td>
+                    <td><button>6</button></td>
+                    <td><button>=</button></td>
+                </tr>
+                <tr>
+                    <td><button>1</button></td>
+                    <td><button>2</button></td>
+                    <td><button>3</button></td>
+                    <td><button>0</button></td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <script>
+        const buttons = document.querySelectorAll('button');
+        const result = document.querySelector('#result');
+
+            let concatText ="";
+        function buttonPressed(event){
+
+            const text = event.target.textContent;
+
+            if(text === "=") {
+                concatText = eval(concatText);
+            } else if(text === "C") {
+                concatText = "";
+            } else {
+                concatText = concatText + text;  
+            }
+            
+            result.textContent = concatText;
+
+
+        }
+
+        buttons.forEach(button => button.addEventListener('click', buttonPressed));
+    </script>
+</body>
+</html>
+
+数字を入力する仕組みを考えましょう
+結果を表示する仕組みを考えましょう
++, -, ×, ÷ を扱う仕組みを考えましょう
+例えば、0で割り算をすることは間違った計算です
